@@ -1,6 +1,6 @@
 <?php include("include/session.php");
-    $auth_token = '67013ab3960787bcf3affae67e649fc0a789'; //your_auth_token
-    $org_id=2389290; //your_organization_id
+    $auth_token ='aa8cd2f4d25aa3418e47f953ad9fe323'; //your_auth_token
+    $org_id=60001280952; //your_organization_id
     
     $headers=array(
             "Authorization: $auth_token",
@@ -8,9 +8,9 @@
             "contentType: application/json; charset=utf-8",
     );
     
-    $params="limit=5&include=contacts"; //options as parameters
+    $params="limit=5&include=departments"; //options as parameters
     
-    $url="https://desk.zoho.com/api/v1/tickets?$params";
+    $url="https://desk.zoho.in/api/v1/tickets?$params";
     
     $ch= curl_init($url);
     curl_setopt($ch,CURLOPT_HTTPHEADER,$headers);
@@ -19,8 +19,6 @@
     
     $response= curl_exec($ch);
     $info= curl_getinfo($ch);
-    
-    curl_close($ch); 
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -96,7 +94,7 @@
 			<h3>Ticket Details</h3>
 			<div class="row">
 				<div class="col-md-10">
-					<div class="price-box">
+					<div class="price-box table-responsive">
 						<table class="table table-bordered">
 						    <thead>
 							<tr>
@@ -108,18 +106,14 @@
                             </thead>
 							<tbody>
 							<tr>
-							<td colspan="4">
-							  <?php
-								if($info['http_code']==200){
-								echo "<h2>Request Successful, Response:</h2> <br>";
-								echo $response;
-								}
-								else{
-								echo "Request not successful. Response code : ".$info['http_code']." <br>";
-								echo "Response : $response";
-								}
-							  ?>
-							 </td>
+							    <td colspan="4"><?php if($info['http_code']==200){
+									echo $response;
+									}
+									else{
+									echo "Request not successful. Response code : ".$info['http_code']." <br>";
+									echo "Response : $response";
+									} ?>
+								</td>
 							</tr>
 							</tbody>
 						</table>
@@ -173,4 +167,3 @@
 	})
 	</script>
 </html>
-
