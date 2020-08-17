@@ -147,7 +147,7 @@ $u_name=$row7['u_name'];
 if(mysqli_num_rows($qry7)>0){
 $_SESSION["u_email"]="$u_email";
 $_SESSION["u_name"]="$u_name";
-echo "<script>window.open('myarea.php','_self')</script>";
+echo "<script>window.open('addticket.php','_self')</script>";
 }else{
 echo "<script>alert('Invalid Username or Password')</script>";
 echo "<script>window.open('index.php','_self')</script>";
